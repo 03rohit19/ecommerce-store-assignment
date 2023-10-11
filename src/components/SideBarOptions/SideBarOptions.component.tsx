@@ -1,0 +1,33 @@
+import React from "react";
+
+interface SideBarOptionsProps {
+  handleChange: () => void;
+  value: string;
+  title: string;
+  name: string;
+  checked: boolean;
+}
+
+const SideBarOptions = ({
+  handleChange,
+  value,
+  title,
+  name,
+  checked,
+}: SideBarOptionsProps) => {
+  return (
+    <label className="sidebar-label-container">
+      <input
+        onChange={handleChange}
+        type="checkbox"
+        value={value}
+        name={name}
+        checked={checked}
+      />
+      <span className="checkmark"></span>
+      {title}
+    </label>
+  );
+};
+
+export default SideBarOptions;
