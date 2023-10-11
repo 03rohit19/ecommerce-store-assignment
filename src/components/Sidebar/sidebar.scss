@@ -1,11 +1,18 @@
 @import "../../styles/common-css-variables";
 
+.sidebar-top-container {
+  margin-top: 200px;
+  width: 256px;
+  height: 100%;
+}
+
 .sidebar-container {
+  margin-top: 200px;
   display: flex;
   flex-direction: column;
   box-shadow: $shadow-default;
   border-radius: 6px;
-  background: $surface-bg;
+  //   background: $surface-bg;
 }
 
 .sidebar-view {

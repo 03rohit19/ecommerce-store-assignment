@@ -3,7 +3,7 @@ import React from "react";
 interface SideBarOptionsProps {
   handleChange: () => void;
   value: string;
-  title: string;
+  title: string | React.ReactElement;
   name: string;
   checked: boolean;
 }
