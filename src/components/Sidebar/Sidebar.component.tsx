@@ -3,7 +3,7 @@ import CategoryComponent from "./Category/Category.component";
 import "./sidebar.scss";
 import PriceComponent from "./Price/Price.component";
 
-interface SidebarProps {
+export interface SidebarProps {
   handleChange: (name: string, value: string) => void;
 }
 

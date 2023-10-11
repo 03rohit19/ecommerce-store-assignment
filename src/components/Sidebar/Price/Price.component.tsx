@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import SideBarOptions from "../../SideBarOptions/SideBarOptions.component";
 import "../sidebar.scss";
+import { SidebarProps } from "../Sidebar.component";
 
-interface CategoryComponentProps {
-  handleChange: (name: string, value: string) => void;
-}
-
-function PriceComponent({ handleChange }: CategoryComponentProps) {
+function PriceComponent({ handleChange }: SidebarProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
 
