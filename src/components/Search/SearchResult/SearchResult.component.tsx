@@ -1,11 +1,8 @@
 import "./SearchResult.scss";
 
-export const SearchResult = ({ result }: any) => {
+export const SearchResult = ({ result, handleSearchResults }: any) => {
   return (
-    <div
-      className="search-result"
-      onClick={(e) => alert(`You selected ${result}!`)}
-    >
+    <div className="search-result" onClick={() => handleSearchResults(result)}>
       {result}
     </div>
   );
