@@ -1,9 +1,25 @@
-import React from "react";
-
-import "./App.scss";
+import React, { useState } from "react";
+import Sidebar from "./components/Sidebar/Sidebar.component";
 
 function App() {
-  return <div className="App">Hello</div>;
+  const [filters, setFilters] = useState({
+    selectedCategory: "",
+    priceRange: "",
+    rating: "",
+  });
+
+  const handleChange = (name: string, value: string) => {
+    setFilters((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  };
+
+  return (
+    <div className="app">
+      <Sidebar handleChange={handleChange} />
+    </div>
+  );
 }
 
 export default App;

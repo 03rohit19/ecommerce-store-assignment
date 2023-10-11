@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "./Category.css";
-// import SideBarOptions from "../../components/SideBarOptions";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import SideBarOptions from "../../SideBarOptions/SideBarOptions.component";
+import "../sidebar.scss";
 
-function CategoryComponent({ handleChange }: any) {
+interface CategoryComponentProps {
+  handleChange: (name: string, value: string) => void;
+}
+
+function CategoryComponent({ handleChange }: CategoryComponentProps) {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
@@ -14,11 +17,11 @@ function CategoryComponent({ handleChange }: any) {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    handleChange({ target: { name: "category", value: category } });
+    handleChange("category", category);
   };
 
   return (
-    <div>
+    <>
       <h2 className="sidebar-title">
         Brand
         <span style={{ marginLeft: "70px" }}>
@@ -28,16 +31,13 @@ function CategoryComponent({ handleChange }: any) {
         </span>
       </h2>
       <div>
-        <label className="sidebar-label-container">
-          <SideBarOptions
-            value=""
-            title="All"
-            name="category"
-            handleChange={() => handleCategoryChange("")}
-            checked={selectedCategory === ""}
-          />
-          <span className="checkmark"></span>All
-        </label>
+        <SideBarOptions
+          value=""
+          title="All"
+          name="category"
+          handleChange={() => handleCategoryChange("")}
+          checked={selectedCategory === ""}
+        />
 
         <SideBarOptions
           handleChange={() => handleCategoryChange("men's clothing")}
@@ -73,7 +73,7 @@ function CategoryComponent({ handleChange }: any) {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 }
 

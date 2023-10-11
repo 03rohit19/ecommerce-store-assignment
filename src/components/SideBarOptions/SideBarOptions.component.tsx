@@ -23,6 +23,7 @@ const SideBarOptions = ({
         value={value}
         name={name}
         checked={checked}
+        className="input-checkbox"
       />
       <span className="checkmark"></span>
       {title}
