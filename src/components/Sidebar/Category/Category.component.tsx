@@ -21,7 +21,7 @@ function CategoryComponent({ handleChange }: CategoryComponentProps) {
   };
 
   return (
-    <>
+    <div className="sidebar-options-container">
       <h2 className="sidebar-title">
         Brand
         <span style={{ marginLeft: "70px" }}>
@@ -73,7 +73,7 @@ function CategoryComponent({ handleChange }: CategoryComponentProps) {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
