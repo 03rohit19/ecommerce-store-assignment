@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import SideBarOptions from "../../SideBarOptions/SideBarOptions.component";
 import "../sidebar.scss";
-import { SidebarProps } from "../Sidebar.component";
 import { AiFillStar } from "react-icons/ai";
 
-function RatingsComponent({ ratingFilter, handleChange }: any) {
+interface RatingsComponentProps {
+  ratingFilter: string;
+  handleChange: (name: string, value: string) => void;
+}
+
+function RatingsComponent({
+  ratingFilter,
+  handleChange,
+}: RatingsComponentProps) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => {

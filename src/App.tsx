@@ -7,6 +7,14 @@ import "./components/Sidebar/sidebar.scss";
 import "./App.scss";
 import Products from "./components/Products/Products.component";
 
+export interface Result {
+  [key: string]: any;
+}
+
+export interface Product {
+  [key: string]: any;
+}
+
 function App() {
   const [filters, setFilters] = useState({
     selectedCategory: "All",
@@ -21,13 +29,13 @@ function App() {
   const [showProducts, setShowProducts] = useState(false);
   const [error, setError] = useState("");
 
-  const lastCategory = useRef("");
+  const lastCategory = useRef<string | number>("");
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleSearchResults = (result: any) => {
+  const handleSearchResults = (result: Result) => {
     // TODO: handle search results
 
     const searchedResult = products?.filter(
@@ -73,7 +81,7 @@ function App() {
       // Filtering by selected category
       if (name === "selectedCategory") {
         filteredProducts = filteredProducts.filter(
-          (product: any) => product.category === value
+          (product: Product) => product.category === value
         );
       }
 
@@ -81,15 +89,15 @@ function App() {
       else if (name === "priceRange") {
         if (value === "under100") {
           filteredProducts = filteredProducts.filter(
-            (product: any) => product.price <= 100
+            (product: Product) => product.price <= 100
           );
         } else if (value === "100to500") {
           filteredProducts = filteredProducts.filter(
-            (product: any) => product.price > 100 && product.price <= 500
+            (product: Product) => product.price > 100 && product.price <= 500
           );
         } else if (value === "above500") {
           filteredProducts = filteredProducts.filter(
-            (product: any) => product.price > 500 && product.price < 1100
+            (product: Product) => product.price > 500 && product.price < 1100
           );
         }
       }
@@ -98,31 +106,31 @@ function App() {
       else if (name === "rating") {
         if (value === "5 star") {
           filteredProducts = filteredProducts.filter(
-            (product: any) =>
+            (product: Product) =>
               Math.round(product.rating.rate) <= 5 &&
               Math.round(product.rating.rate) > 4
           );
         } else if (value === "4 star") {
           filteredProducts = filteredProducts.filter(
-            (product: any) =>
+            (product: Product) =>
               Math.round(product.rating.rate) <= 4 &&
               Math.round(product.rating.rate) > 3
           );
         } else if (value === "3 star") {
           filteredProducts = filteredProducts.filter(
-            (product: any) =>
+            (product: Product) =>
               Math.round(product.rating.rate) <= 3 &&
               Math.round(product.rating.rate) > 2
           );
         } else if (value === "2 star") {
           filteredProducts = filteredProducts.filter(
-            (product: any) =>
+            (product: Product) =>
               Math.round(product.rating.rate) <= 2 &&
               Math.round(product.rating.rate) > 1
           );
         } else if (value === "1 star") {
           filteredProducts = filteredProducts.filter(
-            (product: any) =>
+            (product: Product) =>
               Math.round(product.rating.rate) <= 1 &&
               Math.round(product.rating.rate) > 0
           );
@@ -139,16 +147,19 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={showProducts ? "App" : "App App-bg "}>
       <div className="components-container">
-        {showProducts ? (
-          <div className="sidebar-top-container">
-            <Sidebar filters={filters} handleChange={handleChange} />
-          </div>
-        ) : null}
+        <div className="sidebar-top-container">
+          {showProducts ? (
+            <>
+              <span className="text-bold mb-10">Search Results</span>
+              <Sidebar filters={filters} handleChange={handleChange} />
+            </>
+          ) : null}
+        </div>
 
         <div className="contents-container">
-          <div className="search-bar-container ">
+          <div className="search-bar-container">
             <SearchBar handleSearch={handleSearch} />
 
             {showSearchResults && searchResults && searchResults.length > 0 && (

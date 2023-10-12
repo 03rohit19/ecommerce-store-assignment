@@ -1,19 +1,47 @@
+html,
+body,
 .App {
   // background-color: #eee;
+  width: 100%;
   height: 100vh;
-  width: 100vw;
-  background-image: url("");
+  margin: 0;
 }
 
 .components-container {
   display: flex;
   height: 100%;
   width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .contents-container {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   height: 100%;
   width: 100%;
+  align-items: center;
+}
+
+.text-bold {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.App-bg {
+  /* Full height */
+  // height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-image: url("https://images.unsplash.com/photo-1580682312385-e94d8de1cf3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBjbG90aGVzfGVufDB8fDB8fHww&w=1000&q=80");
 }

@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import SideBarOptions from "../../SideBarOptions/SideBarOptions.component";
 import "../sidebar.scss";
-import { SidebarProps } from "../Sidebar.component";
 
-function PriceComponent({ priceFilter, handleChange }: any) {
+interface PriceComponentProps {
+  priceFilter: string;
+  handleChange: (name: string, value: string) => void;
+}
+
+function PriceComponent({ priceFilter, handleChange }: PriceComponentProps) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => {

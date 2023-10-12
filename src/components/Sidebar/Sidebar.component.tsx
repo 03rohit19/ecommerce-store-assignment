@@ -15,7 +15,7 @@ export interface SidebarProps {
 
 const Sidebar = ({ filters, handleChange }: SidebarProps) => {
   return (
-    <div className="sidebar-container sidebar-view">
+    <div className="sidebar-container ">
       <CategoryComponent
         catergoryFilter={filters.selectedCategory}
         handleChange={handleChange}

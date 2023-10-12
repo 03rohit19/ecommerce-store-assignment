@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard.component";
 import "./products.scss";
+import Fallback from "../EmptyPage/Fallback.component";
 
 interface filteredProduct {
   id: number;
@@ -16,17 +17,21 @@ export interface ProductsProps {
 
 const Products = ({ filteredProducts }: ProductsProps) => (
   <div className="products-container">
-    {filteredProducts.map(({ id, image, title, rating, price }) => (
-      <ProductCard
-        key={id}
-        img={image}
-        title={title}
-        star={rating.rate}
-        reviews={rating.count}
-        prevPrice={price}
-        newPrice={price}
-      />
-    ))}
+    {filteredProducts.length > 0 ? (
+      filteredProducts.map(({ id, image, title, rating, price }) => (
+        <ProductCard
+          key={id}
+          img={image}
+          title={title}
+          star={rating.rate}
+          reviews={rating.count}
+          prevPrice={price}
+          newPrice={price}
+        />
+      ))
+    ) : (
+      <Fallback />
+    )}
   </div>
 );
 

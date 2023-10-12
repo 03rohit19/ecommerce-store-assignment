@@ -3,13 +3,17 @@ import { FaSearch } from "react-icons/fa";
 
 import "./searchbar.scss";
 
-export const SearchBar = ({ handleSearch }: any) => {
+interface SearchBarProps {
+  handleSearch: (value: string) => void;
+}
+
+export const SearchBar = ({ handleSearch }: SearchBarProps) => {
   const [input, setInput] = useState("");
 
   const handleChange = (value: string) => {
     setInput(value);
 
-    handleSearch(value);
+    handleSearch(value.toLowerCase());
   };
 
   return (
