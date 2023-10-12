@@ -16,15 +16,17 @@
 }
 
 .sidebar-view {
+  margin-top: 0px;
   margin-right: 20px;
   width: 256px;
   height: 100%;
   padding-bottom: 8px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  // overflow-y: auto;
+  // overflow-x: hidden;
 }
 
 .sidebar-options-container {
+  
   width: 256px;
   padding: 8px;
   flex-grow: 0;
