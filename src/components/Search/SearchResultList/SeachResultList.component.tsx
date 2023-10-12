@@ -7,7 +7,7 @@ export const SearchResultsList = ({ results, handleSearchResults }: any) => {
       {results.map((result: any, id: any) => {
         return (
           <SearchResult
-            result={result.name}
+            result={result}
             key={id}
             handleSearchResults={handleSearchResults}
           />

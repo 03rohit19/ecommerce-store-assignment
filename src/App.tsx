@@ -14,11 +14,10 @@ function App() {
     rating: "",
   });
 
-  const [searchResults, setSearchResults] = useState([
-    { name: "1" },
-    { name: "2" },
-  ]);
-  const [products, setProducts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [products, setProducts] = useState<any[]>([]);
+  const [result, setResult] = useState<any[]>([]);
   const [showProducts, setShowProducts] = useState(false);
   const [error, setError] = useState("");
 
@@ -28,7 +27,13 @@ function App() {
 
   const handleSearchResults = (result: any) => {
     // TODO: handle search results
+
+    const searchedResult = products?.filter(
+      (p) => p.category === result.category
+    );
     setShowProducts(true);
+    setShowSearchResults((prev: boolean) => !prev);
+    setResult(searchedResult);
   };
 
   async function fetchData() {
@@ -36,6 +41,7 @@ function App() {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = await response.json();
       setProducts(data);
+      setResult(data);
     } catch (error) {
       setError(`Error fetching data: ${error}`);
     }
@@ -128,9 +134,13 @@ function App() {
 
         <div className="contents-container">
           <div className="search-bar-container ">
-            <SearchBar setResults={setSearchResults} />
+            <SearchBar
+              data={products}
+              setResults={setSearchResults}
+              setShowSearchResults={setShowSearchResults}
+            />
 
-            {searchResults && searchResults.length > 0 && (
+            {showSearchResults && searchResults && searchResults.length > 0 && (
               <SearchResultsList
                 results={searchResults}
                 handleSearchResults={handleSearchResults}
@@ -138,7 +148,7 @@ function App() {
             )}
           </div>
 
-          {showProducts ? <Products filteredProducts={products} /> : null}
+          {showProducts ? <Products filteredProducts={result} /> : null}
         </div>
       </div>
       {error ? <div>{error}</div> : null}
