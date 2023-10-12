@@ -3,20 +3,13 @@ import { FaSearch } from "react-icons/fa";
 
 import "./searchbar.scss";
 
-export const SearchBar = ({ data, setResults, setShowSearchResults }: any) => {
+export const SearchBar = ({ handleSearch }: any) => {
   const [input, setInput] = useState("");
 
-  const handleChange = (value: any) => {
-    const filteredProductsData = data?.filter((item: any) =>
-      item.category.includes(value)
-    );
-
-    console.log("input", value, filteredProductsData, data);
-
+  const handleChange = (value: string) => {
     setInput(value);
 
-    setResults(filteredProductsData);
-    setShowSearchResults(true);
+    handleSearch(value);
   };
 
   return (

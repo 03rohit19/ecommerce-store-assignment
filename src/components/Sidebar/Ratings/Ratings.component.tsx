@@ -5,16 +5,14 @@ import "../sidebar.scss";
 import { SidebarProps } from "../Sidebar.component";
 import { AiFillStar } from "react-icons/ai";
 
-function RatingsComponent({ handleChange }: SidebarProps) {
+function RatingsComponent({ ratingFilter, handleChange }: any) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedStarRange, setSelectedStarRange] = useState("");
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
   const handleStarRangeChange = (rating: string) => {
-    setSelectedStarRange(rating);
     handleChange("rating", rating);
   };
 
@@ -42,7 +40,7 @@ function RatingsComponent({ handleChange }: SidebarProps) {
             </>
           }
           name="rating"
-          checked={selectedStarRange === "5 star"}
+          checked={ratingFilter === "5 star"}
         />
 
         <SideBarOptions
@@ -57,7 +55,7 @@ function RatingsComponent({ handleChange }: SidebarProps) {
             </>
           }
           name="rating"
-          checked={selectedStarRange === "4 star"}
+          checked={ratingFilter === "4 star"}
         />
         {showDropdown && (
           <>
@@ -72,7 +70,7 @@ function RatingsComponent({ handleChange }: SidebarProps) {
                 </>
               }
               name="rating"
-              checked={selectedStarRange === "3 star"}
+              checked={ratingFilter === "3 star"}
             />
             <SideBarOptions
               handleChange={() => handleStarRangeChange("2 star")}
@@ -84,7 +82,7 @@ function RatingsComponent({ handleChange }: SidebarProps) {
                 </>
               }
               name="rating"
-              checked={selectedStarRange === "2 star"}
+              checked={ratingFilter === "2 star"}
             />
             <SideBarOptions
               handleChange={() => handleStarRangeChange("1 star")}
@@ -95,7 +93,7 @@ function RatingsComponent({ handleChange }: SidebarProps) {
                 </>
               }
               name="rating"
-              checked={selectedStarRange === "1 star"}
+              checked={ratingFilter === "1 star"}
             />
           </>
         )}

@@ -4,16 +4,14 @@ import SideBarOptions from "../../SideBarOptions/SideBarOptions.component";
 import "../sidebar.scss";
 import { SidebarProps } from "../Sidebar.component";
 
-function PriceComponent({ handleChange }: SidebarProps) {
+function PriceComponent({ priceFilter, handleChange }: any) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedPriceRange, setSelectedPriceRange] = useState("");
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
   const handlePriceRangeChange = (priceRange: string) => {
-    setSelectedPriceRange(priceRange);
     handleChange("priceRange", priceRange);
   };
 
@@ -32,8 +30,8 @@ function PriceComponent({ handleChange }: SidebarProps) {
           value=""
           title="All"
           name="category"
-          handleChange={() => handlePriceRangeChange("")}
-          checked={selectedPriceRange === ""}
+          handleChange={() => handlePriceRangeChange("All")}
+          checked={priceFilter === "All"}
         />
 
         <SideBarOptions
@@ -41,7 +39,7 @@ function PriceComponent({ handleChange }: SidebarProps) {
           value="under100"
           title="Under 100"
           name="priceRange"
-          checked={selectedPriceRange === "under100"}
+          checked={priceFilter === "under100"}
         />
         {showDropdown && (
           <>
@@ -50,14 +48,14 @@ function PriceComponent({ handleChange }: SidebarProps) {
               value="100to500"
               title="100 to 500"
               name="priceRange"
-              checked={selectedPriceRange === "100to300"}
+              checked={priceFilter === "100to500"}
             />
             <SideBarOptions
               handleChange={() => handlePriceRangeChange("above500")}
               value="above500"
               title="Above 500"
               name="priceRange"
-              checked={selectedPriceRange === "Above500"}
+              checked={priceFilter === "above500"}
             />
           </>
         )}

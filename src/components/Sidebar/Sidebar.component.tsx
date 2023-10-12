@@ -5,15 +5,29 @@ import PriceComponent from "./Price/Price.component";
 import RatingsComponent from "./Ratings/Ratings.component";
 
 export interface SidebarProps {
+  filters: {
+    selectedCategory: string;
+    priceRange: string;
+    rating: string;
+  };
   handleChange: (name: string, value: string) => void;
 }
 
-const Sidebar = ({ handleChange }: SidebarProps) => {
+const Sidebar = ({ filters, handleChange }: SidebarProps) => {
   return (
     <div className="sidebar-container sidebar-view">
-      <CategoryComponent handleChange={handleChange} />
-      <PriceComponent handleChange={handleChange} />
-      <RatingsComponent handleChange={handleChange} />
+      <CategoryComponent
+        catergoryFilter={filters.selectedCategory}
+        handleChange={handleChange}
+      />
+      <PriceComponent
+        priceFilter={filters.priceRange}
+        handleChange={handleChange}
+      />
+      <RatingsComponent
+        ratingFilter={filters.rating}
+        handleChange={handleChange}
+      />
     </div>
   );
 };

@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import SideBarOptions from "../../SideBarOptions/SideBarOptions.component";
 import "../sidebar.scss";
-import { SidebarProps } from "../Sidebar.component";
 
-function CategoryComponent({ handleChange }: SidebarProps) {
+interface CategoryComponentProps {
+  catergoryFilter: string;
+  handleChange: (name: string, value: string) => void;
+}
+
+function CategoryComponent({
+  catergoryFilter,
+  handleChange,
+}: CategoryComponentProps) {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    handleChange("category", category);
+    handleChange("selectedCategory", category);
   };
 
   return (
@@ -29,11 +34,11 @@ function CategoryComponent({ handleChange }: SidebarProps) {
       </h2>
       <div>
         <SideBarOptions
-          value=""
+          value="All"
           title="All"
           name="category"
-          handleChange={() => handleCategoryChange("")}
-          checked={selectedCategory === ""}
+          handleChange={() => handleCategoryChange("All")}
+          checked={catergoryFilter === "All"}
         />
 
         <SideBarOptions
@@ -41,7 +46,7 @@ function CategoryComponent({ handleChange }: SidebarProps) {
           value="men's clothing"
           title="Men"
           name="category"
-          checked={selectedCategory === "men's clothing"}
+          checked={catergoryFilter === "men's clothing"}
         />
 
         {showDropdown && (
@@ -51,21 +56,21 @@ function CategoryComponent({ handleChange }: SidebarProps) {
               value="women's clothing"
               title="Women"
               name="category"
-              checked={selectedCategory === "women's clothing"}
+              checked={catergoryFilter === "women's clothing"}
             />
             <SideBarOptions
               handleChange={() => handleCategoryChange("jewelery")}
               value="jewelery"
               title="Jewelry"
               name="category"
-              checked={selectedCategory === "jewelery"}
+              checked={catergoryFilter === "jewelery"}
             />
             <SideBarOptions
               handleChange={() => handleCategoryChange("electronics")}
               value="electronics"
               title="Electronics"
               name="category"
-              checked={selectedCategory === "electronics"}
+              checked={catergoryFilter === "electronics"}
             />
           </>
         )}
